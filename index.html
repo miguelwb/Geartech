@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GearTech</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="topbar">
+<div class="brand">GearTech</div>
+<nav class="nav">
+<a href="#home" data-nav>Início</a>
+<a href="#dicas" data-nav>Dicas</a>
+<a href="#cliente" data-nav class="hidden" id="navCliente">Área do Cliente</a>
+<a href="#admin" data-nav class="hidden" id="navAdmin">Admin</a>
+<button id="btnLogin" class="btn accent">Entrar</button>
+<button id="btnLogout" class="btn" style="display:none">Sair</button>
+</nav>
+</header>
+<main>
+<section id="home" class="page active">
+<div class="hero">
+<h1>Manutenção automotiva confiável</h1>
+<p>Serviços profissionais para carros de passeio, com agendamento online e acompanhamento do status.</p>
+<div class="hero-actions">
+<button class="btn accent" id="ctaAgendar">Agendar serviço</button>
+<button class="btn" id="ctaCadastro">Criar conta</button>
+</div>
+</div>
+<div class="features">
+<div class="card">
+<div class="icon">🔧</div>
+<h3>Serviços completos</h3>
+<p>Troca de óleo, freios, suspensão, diagnósticos e muito mais.</p>
+</div>
+<div class="card">
+<div class="icon">🗓️</div>
+<h3>Agendamento online</h3>
+<p>Escolha data e horário, descreva o problema e envie seu pedido.</p>
+</div>
+<div class="card">
+<div class="icon">✅</div>
+<h3>Acompanhamento</h3>
+<p>Veja o status do serviço: Pendente, Em processo ou Concluído.</p>
+</div>
+</div>
+</section>
+<section id="dicas" class="page">
+<div class="section">
+<h2>Dicas de manutenção e problemas comuns</h2>
+<div class="grid-two">
+<div class="card">
+<h3>Troca de óleo</h3>
+<p>Troque o óleo a cada 5.000–10.000 km, conforme o fabricante. Use sempre o lubrificante indicado para o seu motor.</p>
+<h4>Sinais de atenção</h4>
+<ul>
+<li>Luz do óleo acesa</li>
+<li>Ruídos metálicos</li>
+<li>Odor de queimado</li>
+</ul>
+</div>
+<div class="card">
+<h3>Freios</h3>
+<p>Pastilhas desgastadas aumentam a distância de frenagem. Faça inspeção a cada 10.000 km ou quando ouvir ruídos.</p>
+<h4>Cuidados</h4>
+<ul>
+<li>Evite rodar com o freio de mão acionado</li>
+<li>Verifique o nível do fluido de freio</li>
+</ul>
+</div>
+<div class="card">
+<h3>Pneus e alinhamento</h3>
+<p>Cheque calibragem semanalmente. Alinhamento e balanceamento garantem estabilidade e segurança.</p>
+</div>
+<div class="card">
+<h3>Elétrica e bateria</h3>
+<p>Se o carro demora a dar partida, teste a bateria e alternador. Evite ligar muitos acessórios com o motor desligado.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="auth" class="page">
+<div class="grid-two">
+<div class="card">
+<h2>Entrar</h2>
+<form id="loginForm" class="form">
+<label>Email<input type="email" id="loginEmail" required></label>
+<label>Senha<input type="password" id="loginPassword" required></label>
+<button class="btn accent" type="submit">Entrar</button>
+</form>
+</div>
+<div class="card">
+<h2>Criar conta</h2>
+<form id="registerForm" class="form">
+<label>Nome<input type="text" id="regNome" required></label>
+<label>Email<input type="email" id="regEmail" required></label>
+<label>Senha<input type="password" id="regPassword" required></label>
+<button class="btn accent" type="submit">Cadastrar</button>
+</form>
+</div>
+</div>
+</section>
+<section id="cliente" class="page">
+<div class="tabs">
+<button class="tab active" data-tab="agendar">Agendar serviço</button>
+<button class="tab" data-tab="meus">Meus agendamentos</button>
+</div>
+<div class="tab-content" id="tab-agendar">
+<div class="card">
+<h2>Novo agendamento</h2>
+<form id="scheduleForm" class="form">
+<label>Nome<input type="text" id="cliNome" required></label>
+<div class="grid-two">
+<label>Marca<input type="text" id="vehMarca" required></label>
+<label>Modelo<input type="text" id="vehModelo" required></label>
+</div>
+<div class="grid-two">
+<label>Ano<input type="number" id="vehAno" min="1960" max="2099" required></label>
+<label>Placa<input type="text" id="vehPlaca" required></label>
+</div>
+<label>Tipo de serviço<select id="srvTipo" required>
+<option value="Troca de óleo">Troca de óleo</option>
+<option value="Freios">Freios</option>
+<option value="Suspensão">Suspensão</option>
+<option value="Motor">Motor</option>
+<option value="Alinhamento">Alinhamento</option>
+<option value="Diagnóstico">Diagnóstico</option>
+</select></label>
+<label>Descrição<textarea id="srvDesc" rows="3" required></textarea></label>
+<div class="grid-two">
+<label>Data<input type="date" id="srvData" required></label>
+<label>Horário<select id="srvHora" required disabled><option value="">Selecione a data</option></select></label>
+</div>
+<p class="hint" id="slotsInfo">Selecione a data para ver horários disponíveis.</p>
+<button class="btn accent" type="submit">Enviar agendamento</button>
+</form>
+</div>
+</div>
+<div class="tab-content hidden" id="tab-meus">
+<div class="card">
+<h2>Meus agendamentos</h2>
+<div id="meusAgendamentos" class="list"></div>
+</div>
+</div>
+</section>
+<section id="admin" class="page">
+<div class="tabs">
+<button class="tab active" data-tab="adm-ag">Agendamentos</button>
+<button class="tab" data-tab="adm-fi">Financeiro</button>
+<button class="tab" data-tab="adm-no">Anotações</button>
+<button class="tab" data-tab="adm-ho">Horários</button>
+</div>
+<div class="tab-content" id="tab-adm-ag">
+<div class="card">
+<div class="grid-two">
+<div>
+<h2>Lista de agendamentos</h2>
+<label>Filtrar por status<select id="admFiltro">
+<option value="">Todos</option>
+<option value="Pendente">Pendente</option>
+<option value="Em processo">Em processo</option>
+<option value="Concluído">Concluído</option>
+</select></label>
+<div id="admAgList" class="list"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-content hidden" id="tab-adm-fi">
+<div class="card">
+<h2>Financeiro</h2>
+<form id="financeForm" class="form">
+<div class="grid-two">
+<label>Tipo<select id="finTipo" required>
+<option value="entrada">Entrada</option>
+<option value="saida">Saída</option>
+</select></label>
+<label>Categoria<input type="text" id="finCat" required></label>
+</div>
+<label>Descrição<input type="text" id="finDesc" required></label>
+<div class="grid-two">
+<label>Valor (R$)<input type="number" id="finValor" min="0" step="0.01" required></label>
+<label>Data<input type="date" id="finData" required></label>
+</div>
+<button class="btn accent" type="submit">Registrar</button>
+</form>
+<div class="grid-two">
+<div>
+<h3>Resumo do mês</h3>
+<div id="finResumo" class="stats"></div>
+</div>
+<div>
+<h3>Gráfico simples</h3>
+<div class="chart">
+<div class="bar" id="barEntrada"></div>
+<div class="bar" id="barSaida"></div>
+</div>
+</div>
+</div>
+<div class="list" id="finList"></div>
+</div>
+</div>
+<div class="tab-content hidden" id="tab-adm-no">
+<div class="card">
+<h2>Anotações internas</h2>
+<form id="noteForm" class="form">
+<div class="grid-two">
+<label>Categoria<input type="text" id="noteCat" required></label>
+<label>Título<input type="text" id="noteTitle" required></label>
+</div>
+<label>Conteúdo<textarea id="noteBody" rows="3" required></textarea></label>
+<button class="btn accent" type="submit">Salvar anotação</button>
+</form>
+<label>Filtrar categoria<select id="noteFilter"><option value="">Todas</option></select></label>
+<div class="list" id="noteList"></div>
+</div>
+</div>
+</section>
+<div class="tab-content hidden" id="tab-adm-ho">
+<div class="card">
+<h2>Horários de funcionamento</h2>
+<form id="hoursForm" class="form">
+<div class="grid-two">
+<label>Duração do atendimento (min)<input type="number" id="hoSlot" min="15" step="15" required></label>
+<label>Data sem funcionamento<input type="date" id="hoAddDate"></label>
+</div>
+<button class="btn" type="button" id="hoAddBtn">Adicionar data sem funcionamento</button>
+<h3>Semana</h3>
+<div class="grid-two">
+<div>
+<label>Domingo<div class="grid-two"><input type="time" id="hoOpen0"><input type="time" id="hoClose0"></div><div><input type="checkbox" id="hoClosed0"> Fechado</div></label>
+<label>Segunda<div class="grid-two"><input type="time" id="hoOpen1"><input type="time" id="hoClose1"></div><div><input type="checkbox" id="hoClosed1"> Fechado</div></label>
+<label>Terça<div class="grid-two"><input type="time" id="hoOpen2"><input type="time" id="hoClose2"></div><div><input type="checkbox" id="hoClosed2"> Fechado</div></label>
+<label>Quarta<div class="grid-two"><input type="time" id="hoOpen3"><input type="time" id="hoClose3"></div><div><input type="checkbox" id="hoClosed3"> Fechado</div></label>
+</div>
+<div>
+<label>Quinta<div class="grid-two"><input type="time" id="hoOpen4"><input type="time" id="hoClose4"></div><div><input type="checkbox" id="hoClosed4"> Fechado</div></label>
+<label>Sexta<div class="grid-two"><input type="time" id="hoOpen5"><input type="time" id="hoClose5"></div><div><input type="checkbox" id="hoClosed5"> Fechado</div></label>
+<label>Sábado<div class="grid-two"><input type="time" id="hoOpen6"><input type="time" id="hoClose6"></div><div><input type="checkbox" id="hoClosed6"> Fechado</div></label>
+<button class="btn accent" type="submit" id="hoSaveBtn">Salvar horários</button>
+</div>
+</div>
+</form>
+<h3>Datas sem funcionamento</h3>
+<div id="hoClosedList" class="list"></div>
+</div>
+</div>
+</main>
+<footer class="footer">
+<div>© 2025 GearTech</div>
+<div>Rua Exemplo, 123 • (11) 99999-0000</div>
+</footer>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
